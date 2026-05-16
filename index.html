@@ -54,6 +54,9 @@ nav {
   font-size: 0.83rem; font-weight: 500; text-decoration: none;
   transition: background 0.2s; white-space: nowrap;
 }
+  @media (max-width: 960px) {
+  .nav-cta { display: none; }
+}
 .nav-cta:hover { background: var(--blue); }
  
 /* Hamburger */
@@ -440,15 +443,9 @@ h1 { animation-delay: 0.2s; }
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-right">
+ <div class="nav-right">
     <a href="https://wa.me/2348096198083" target="_blank" class="nav-whatsapp">💬 WhatsApp Us</a>
     <a href="#contact" class="nav-cta">Get in Touch</a>
-  </div>
-    <a href="https://wa.me/2348096198083" target="_blank" class="nav-whatsapp">💬 WhatsApp Us</a>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
