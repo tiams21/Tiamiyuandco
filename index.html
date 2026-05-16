@@ -60,7 +60,7 @@ nav {
 .nav-cta:hover { background: var(--blue); }
  
 /* Hamburger */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; order: -1; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
 .mobile-menu {
   display: none; position: fixed; top: 0; left: 0; bottom: 0; z-index: 190;
@@ -428,9 +428,10 @@ h1 { animation-delay: 0.2s; }
 
 <!-- NAV -->
 <nav>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="#top" class="nav-logo">
+    <img src="logo.png" alt="Tiamiyu Adeshina & Co.">
+    <div class="nav-name">Tiamiyu Adeshina &amp; Co.<span>Chartered Accountants</span></div>
+  </a>
   <ul class="nav-links">
     <li><a href="#top">Home</a></li>
     <li><a href="#services">Services</a></li>
@@ -442,11 +443,10 @@ h1 { animation-delay: 0.2s; }
   <div class="nav-right">
     <a href="https://wa.me/2348096198083" target="_blank" class="nav-whatsapp">💬 WhatsApp Us</a>
     <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <a href="#top" class="nav-logo">
-    <img src="logo.png" alt="Tiamiyu Adeshina & Co.">
-    <div class="nav-name">Tiamiyu Adeshina &amp; Co.<span>Chartered Accountants</span></div>
-  </a>
 </nav>
 
 <!-- MOBILE MENU -->
