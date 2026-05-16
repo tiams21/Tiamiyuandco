@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team | Tiamiyu Adeshina & Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f5c;
+    --blue: #1a3ed4;
+    --teal: #5be6d8;
+    --teal-soft: #c8f4f0;
+    --white: #ffffff;
+    --offwhite: #f5f6fa;
+    --text: #0f1f5c;
+    --muted: #5a6282;
+    --border: #dde1ef;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--navy);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .logo-img { height: 38px; width: auto; border-radius: 6px; }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--navy); line-height: 1.2;
+  }
+  .nav-name span {
+    display: block; font-size: 0.65rem; font-weight: 400;
+    letter-spacing: 0.1em; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--navy); font-weight: 500; }
+  .nav-cta {
+    background: var(--navy); color: #fff;
+    padding: 0.55rem 1.3rem; border-radius: 4px;
+    font-size: 0.83rem; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.02em; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--blue); }
+
+  /* TEAM PAGE WRAPPER */
+  .team-page {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    padding-top: 70px;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--navy);
+    padding: 4rem 8% 3rem;
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: rgba(255,255,255,0.03);
+    transform: rotate(30deg);
+    border-radius: 4px;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute; bottom: -40px; right: 15%;
+    width: 160px; height: 160px;
+    background: rgba(91,230,216,0.07);
+    transform: rotate(20deg);
+    border-radius: 4px;
+  }
+  .header-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); font-weight: 500; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .header-eyebrow::before {
+    content: ''; display: block;
+    width: 18px; height: 1.5px; background: var(--teal);
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 600; color: #fff; line-height: 1.15;
+    position: relative; z-index: 1;
+  }
+  .page-header p {
+    font-size: 0.95rem; color: rgba(255,255,255,0.55);
+    margin-top: 0.8rem; max-width: 480px;
+    line-height: 1.7; position: relative; z-index: 1;
+  }
+
+  /* SLIDER SECTION */
+  .slider-section {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem 5%;
+    position: relative;
+    background: var(--offwhite);
+  }
+
+  /* COUNTER */
+  .member-counter {
+    position: absolute; top: 2rem; right: 8%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .member-counter strong { color: var(--navy); font-size: 1.3rem; }
+
+  /* SLIDER CONTAINER */
+  .slider-container {
+    width: 100%; max-width: 900px;
+    display: flex; align-items: center; gap: 2rem;
+  }
+
+  /* ARROWS */
+  .arrow-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0;
+    transition: all 0.2s; color: var(--navy);
+    font-size: 1.2rem;
+  }
+  .arrow-btn:hover {
+    background: var(--navy); color: #fff;
+    border-color: var(--navy);
+    transform: scale(1.05);
+  }
+  .arrow-btn:disabled {
+    opacity: 0.3; cursor: not-allowed;
+  }
+  .arrow-btn:disabled:hover {
+    background: var(--white); color: var(--navy);
+    border-color: var(--border); transform: none;
+  }
+
+  /* MEMBER CARD */
+  .member-card {
+    flex: 1;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 520px;
+    animation: slideIn 0.4s ease both;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .member-card.from-left { animation-name: slideInLeft; }
+
+  .card-photo {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .card-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    display: block;
+  }
+  .card-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+    background: linear-gradient(160deg, #0f1f5c 0%, #1a3ed4 100%);
+  }
+  .placeholder-initial {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 600;
+    color: rgba(255,255,255,0.15); line-height: 1;
+  }
+  .photo-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(transparent, rgba(15,31,92,0.85));
+  }
+  .photo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: #fff;
+    line-height: 1.2;
+  }
+  .photo-title {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); margin-top: 5px;
+  }
+
+  .card-content {
+    padding: 2.5rem 2.5rem 2rem;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+  }
+  .card-role-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-soft); color: var(--navy);
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 1.5rem; align-self: flex-start;
+  }
+  .card-bio {
+    font-size: 0.9rem; line-height: 1.85; color: var(--muted);
+    flex: 1; margin-bottom: 2rem;
+  }
+  .card-credentials {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+  .credentials-label {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--blue); font-weight: 500; margin-bottom: 0.9rem;
+  }
+  .credentials-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .credentials-list li {
+    font-size: 0.82rem; color: var(--navy);
+    display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+  }
+  .cred-tick { color: var(--teal); font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* DOTS */
+  .slider-dots {
+    display: flex; gap: 8px; justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dot.active {
+    background: var(--navy); width: 24px; border-radius: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    padding: 2rem 8%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.78rem;
+  }
+  footer strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    .member-card { grid-template-columns: 1fr; min-height: auto; }
+    .card-photo { min-height: 280px; }
+    .nav-links { display: none; }
+    .slider-container { gap: 0.8rem; }
+    .arrow-btn { width: 40px; height: 40px; font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Tiamiyu Adeshina & Co." class="logo-img">
+    <div class="nav-name">
+      Tiamiyu Adeshina &amp; Co.
+      <span>Chartered Accountants</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#why">Why Us</a></li>
+    <li><a href="index.html#process">Our Process</a></li>
+    <li><a href="team.html" class="active">Our Team</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<div class="team-page">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="header-eyebrow">The people behind the work</div>
+    <h1>Meet Our Team</h1>
+    <p>A team of qualified professionals committed to delivering rigorous, practical, and trusted financial services to businesses across Nigeria.</p>
+  </div>
+
+  <!-- SLIDER -->
+  <div class="slider-section">
+    <div class="member-counter">
+      <strong id="current-num">1</strong> / <span id="total-num">3</span>
+    </div>
+
+    <div style="width:100%; max-width:900px; display:flex; flex-direction:column; align-items:center;">
+      <div class="slider-container">
+        <button class="arrow-btn" id="prev-btn" onclick="navigate(-1)" disabled>&#8592;</button>
+        <div id="card-wrapper" style="flex:1;"></div>
+        <button class="arrow-btn" id="next-btn" onclick="navigate(1)">&#8594;</button>
+      </div>
+      <div class="slider-dots" id="dots"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <strong>Tiamiyu Adeshina &amp; Co.</strong> · Chartered Accountants · Palmgroove, Lagos
+      <div style="margin-top:4px;">© 2025 Tiamiyu Adeshina &amp; Co. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="team.html">Team</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="mailto:tiamiyuandco@gmail.com">Email Us</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const team = [
+  {
+    name: "Tiamiyu Adeshina Ismaila",
+    suffix: "FCA",
+    title: "Managing Partner",
+    photo: "principal.jpg",
+    bio: "Tiamiyu Adeshina Ismaila is a seasoned Chartered Accountant with over 15 years of experience in audit, taxation, and financial advisory services. He founded Tiamiyu Adeshina & Co. with a clear vision: to deliver high-quality, practical, and affordable accounting solutions to Small and Medium Enterprises (SMEs) in Nigeria. A Fellow of the Institute of Chartered Accountants of Nigeria (ICAN), he has built a strong reputation for integrity, attention to detail, and helping businesses achieve compliance while optimising their tax positions. His hands-on approach and deep understanding of the Nigerian business environment have helped numerous SMEs navigate complex tax regulations, successfully scale their operations, and maintain proper financial records.",
+    credentials: [
+      "Fellow, Institute of Chartered Accountants of Nigeria (FCA)",
+      "ICAN Membership No: MB031130",
+      "Practicing License Holder"
+    ]
+  },
+  {
+    name: "Quadri Aduragbemi Tiamiyu",
+    suffix: "",
+    title: "Business Development & Advisory Associate",
+    photo: "quadri.jpg",
+    bio: "Quadri Aduragbemi Tiamiyu is a finance and business development professional with a diverse background spanning accounting, data analytics, and healthtech entrepreneurship. He holds an AAT qualification from the Institute of Chartered Accountants of Nigeria (ICAN) and has further training in data analytics from Macquarie University. A co-founder of a Nigerian healthtech startup, he brings a sharp commercial instinct and a deep understanding of how modern businesses operate and scale. At Tiamiyu Adeshina & Co., he leads client development initiatives, drives the firm's digital presence, and supports the modernisation of internal operations — bridging traditional accounting practice with contemporary business strategy.",
+    credentials: [
+      "AAT — Institute of Chartered Accountants of Nigeria (ICAN)",
+      "Data Analytics, Macquarie University",
+      "Co-founder, Nigerian Healthtech Startup"
+    ]
+  },
+  {
+    name: "Tiamiyu Faruq Timilehin",
+    suffix: "",
+    title: "Tax Associate",
+    photo: "faruq.jpg",
+    bio: "Faruq Timilehin Tiamiyu is an accounting professional with hands-on experience supporting audit and tax engagements. He contributes to the firm's tax practice, assisting with compliance, client documentation, and financial review work.",
+    credentials: [
+      "Accounting Professional",
+      "Tax & Audit Compliance",
+      "Financial Review & Documentation"
+    ]
+  }
+];
+
+let current = 0;
+let direction = 1;
+
+function getInitial(name) {
+  return name.split(' ').map(n => n[0]).slice(0, 2).join('');
+}
+
+function renderCard() {
+  const m = team[current];
+  const wrapper = document.getElementById('card-wrapper');
+
+  const card = document.createElement('div');
+  card.className = 'member-card' + (direction < 0 ? ' from-left' : '');
+
+  card.innerHTML = `
+    <div class="card-photo">
+      <div class="card-photo-placeholder">
+        <div class="placeholder-initial">${getInitial(m.name)}</div>
+      </div>
+      <div class="photo-overlay">
+        <div class="photo-name">${m.name}${m.suffix ? ', ' + m.suffix : ''}</div>
+        <div class="photo-title">${m.title}</div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-role-badge">● ${m.title}</div>
+      <p class="card-bio">${m.bio}</p>
+      <div class="card-credentials">
+        <div class="credentials-label">Credentials &amp; Memberships</div>
+        <ul class="credentials-list">
+          ${m.credentials.map(c => `<li><span class="cred-tick">✓</span>${c}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+
+  wrapper.innerHTML = '';
+  wrapper.appendChild(card);
+
+  // Update counter
+  document.getElementById('current-num').textContent = current + 1;
+
+  // Update dots
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+
+  // Update arrows
+  document.getElementById('prev-btn').disabled = current === 0;
+  document.getElementById('next-btn').disabled = current === team.length - 1;
+}
+
+function navigate(dir) {
+  direction = dir;
+  current = Math.max(0, Math.min(team.length - 1, current + dir));
+  renderCard();
+}
+
+function goTo(index) {
+  direction = index > current ? 1 : -1;
+  current = index;
+  renderCard();
+}
+
+// Build dots
+const dotsEl = document.getElementById('dots');
+team.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goTo(i);
+  dotsEl.appendChild(dot);
+});
+
+document.getElementById('total-num').textContent = team.length;
+renderCard();
+</script>
+</body>
+</html>
