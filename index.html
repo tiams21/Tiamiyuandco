@@ -24,7 +24,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(-
 
 /* ─── NAV ─── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.85rem 5%;
   background: rgba(255,255,255,0.97);
@@ -451,7 +451,7 @@ h1 { animation-delay: 0.2s; }
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button onclick="toggleMenu()" style="position:fixed; top:1.4rem; right:1.5rem; z-index:300; background:none; border:none; color:rgba(255,255,255,0.9); font-size:2rem; cursor:pointer; line-height:1;">✕</button>
+  <button onclick="toggleMenu()" style="position:fixed; top:1.4rem; right:1.5rem; z-index:9999; background:none; border:none; color:#ffffff; font-size:2.5rem; cursor:pointer; line-height:1; display:block;">✕</button>
  <a href="#top" onclick="toggleMenu()">Home</a>
 <a href="#services" onclick="toggleMenu()">Services</a>
 <a href="#why" onclick="toggleMenu()">About Us</a>
