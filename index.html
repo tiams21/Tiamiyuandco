@@ -1038,11 +1038,12 @@ function teamNav(dir) {
     dot.classList.toggle('active', i === teamCurrent);
   });
 }
-   // === TESTIMONIALS SLIDER WITH SWIPE ===
+   // === TESTIMONIALS SLIDER WITH SWIPE + AUTOPLAY ===
 let testiCurrent = 0;
 const testiTotal = 2;
 let testiStartX = 0;
 let testiIsDragging = false;
+let testiAutoPlayInterval = null;
 
 const testiTrack = document.getElementById('testiTrack');
 
@@ -1075,13 +1076,14 @@ function initTestiDots() {
   }
 }
 
-// Touch Swipe Support for Testimonials
+// Touch Swipe Support
 function initTestiSwipe() {
   if (!testiTrack) return;
   
   testiTrack.addEventListener('touchstart', (e) => {
     testiStartX = e.touches[0].clientX;
     testiIsDragging = true;
+    stopTestiAutoplay(); // Pause autoplay when user interacts
   });
 
   testiTrack.addEventListener('touchend', (e) => {
@@ -1089,15 +1091,28 @@ function initTestiSwipe() {
     const endX = e.changedTouches[0].clientX;
     const diff = testiStartX - endX;
 
-    if (diff > 50) {
-      testiNav(1);        // Swipe Left → Next
-    } else if (diff < -50) {
-      testiNav(-1);       // Swipe Right → Previous
-    }
+    if (diff > 50) testiNav(1);
+    else if (diff < -50) testiNav(-1);
+    
     testiIsDragging = false;
+    startTestiAutoplay(); // Resume autoplay
   });
 }
 
+// Autoplay Functions
+function startTestiAutoplay() {
+  stopTestiAutoplay(); // Clear existing interval
+  testiAutoPlayInterval = setInterval(() => {
+    testiNav(1);
+  }, 5000); // Change slide every 5 seconds
+}
+
+function stopTestiAutoplay() {
+  if (testiAutoPlayInterval) {
+    clearInterval(testiAutoPlayInterval);
+    testiAutoPlayInterval = null;
+  }
+}
 // Initialize Dots
 function initTeamDots() {
   const dotsContainer = document.getElementById('teamDots');
@@ -1203,6 +1218,7 @@ window.onload = function() {
   initSwipe();
   initTestiDots();
   initTestiSwipe();
+  startTestiAutoplay();        // ← Start autoplay
 };
     // Toggle Read More Bio
 function toggleBio(btn) {
