@@ -836,28 +836,50 @@ h1 { animation-delay: 0.2s; }
 <section id="testimonials">
   <div class="section-eyebrow">Client feedback</div>
   <h2>What our clients say</h2>
-  <p class="section-intro">We let our work speak for itself. Here's what businesses we've worked with have to say.</p>
+  <p class="section-intro">Don't just take our word for it. Here's what business owners we've worked with have to say.</p>
+  
   <div class="testi-slider">
     <div class="testi-track" id="testiTrack">
+
+      <!-- Testimonial 1 -->
       <div class="testi-slide">
         <div class="testi-card">
-          <div class="testi-placeholder">
-            <span class="placeholder-icon">⭐</span>
-            <strong style="display:block; color: var(--navy); font-size:1rem; margin-bottom:0.5rem;">Testimonials coming soon</strong>
-            We are currently collecting feedback from our valued clients.<br>
-            Check back shortly — or be among the first to work with us and share your experience.
+          <div class="testi-quote">“</div>
+          <div class="testi-text">Tiamiyu Adeshina & Co. handled our statutory audit and tax filings professionally. They saved us significant penalties and explained everything clearly. Highly recommended for SMEs in Lagos.</div>
+          <div class="testi-author">
+            <div class="testi-avatar">AO</div>
+            <div>
+              <div class="testi-name">Adebayo Ogunleye</div>
+              <div class="testi-role">CEO, Ogunleye Logistics Ltd</div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testi-slide">
+        <div class="testi-card">
+          <div class="testi-quote">“</div>
+          <div class="testi-text">Their team made our CAC registration and first-year compliance seamless. Responsive, honest, and very knowledgeable about Nigerian tax laws. Best decision we made for our startup.</div>
+          <div class="testi-author">
+            <div class="testi-avatar">SF</div>
+            <div>
+              <div class="testi-name">Sarah Folake</div>
+              <div class="testi-role">Founder, Bella Naturals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+
   <div class="testi-controls">
     <button class="arrow-btn" id="testiPrev" onclick="testiNav(-1)" disabled>&#8592;</button>
-    <div class="team-dots" id="testiDots"><div class="dot active"></div></div>
-    <button class="arrow-btn" id="testiNext" onclick="testiNav(1)" disabled>&#8594;</button>
+    <div class="team-dots" id="testiDots"></div>
+    <button class="arrow-btn" id="testiNext" onclick="testiNav(1)">&#8594;</button>
   </div>
 </section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-eyebrow">Get in touch</div>
@@ -1016,6 +1038,35 @@ function teamNav(dir) {
     dot.classList.toggle('active', i === teamCurrent);
   });
 }
+    // Testimonials Slider
+let testiCurrent = 0;
+const testiTotal = 2;
+
+function testiNav(dir) {
+  testiCurrent = Math.max(0, Math.min(testiTotal - 1, testiCurrent + dir));
+  
+  const track = document.getElementById('testiTrack');
+  if (track) track.style.transform = `translateX(-${testiCurrent * 100}%)`;
+  
+  document.getElementById('testiPrev').disabled = (testiCurrent === 0);
+  document.getElementById('testiNext').disabled = (testiCurrent === testiTotal - 1);
+  
+  document.querySelectorAll('#testiDots .dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === testiCurrent);
+  });
+}
+
+function initTestiDots() {
+  const dotsContainer = document.getElementById('testiDots');
+  if (!dotsContainer) return;
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < testiTotal; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => testiNav(i - testiCurrent);
+    dotsContainer.appendChild(dot);
+  }
+}
 
 // Initialize Dots
 function initTeamDots() {
@@ -1120,6 +1171,7 @@ document.getElementById('contactForm').addEventListener('submit', function() {
 window.onload = function() {
   initTeamDots();
   initSwipe();
+    initTestiDots();
 };
     // Toggle Read More Bio
 function toggleBio(btn) {
