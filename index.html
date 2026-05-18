@@ -935,45 +935,72 @@ h1 { animation-delay: 0.2s; }
 </footer>
 
 <script>
-// ── Mobile menu ──
+// ── Mobile Menu ──
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// ── Team slider ──
+// ── Team Slider ──
 let teamCurrent = 0;
 const teamTotal = 3;
+
 function teamNav(dir) {
   teamCurrent = Math.max(0, Math.min(teamTotal - 1, teamCurrent + dir));
-  document.getElementById('teamTrack').style.transform = `translateX(-${teamCurrent * 100}%)`;
-  document.getElementById('teamPrev').disabled = teamCurrent === 0;
-  document.getElementById('teamNext').disabled = teamCurrent === teamTotal - 1;
-  document.querySelectorAll('#teamDots .dot').forEach((d, i) => d.classList.toggle('active', i === teamCurrent));
-}
-// Build team dots
-const teamDotsEl = document.getElementById('teamDots');
-for (let i = 0; i < teamTotal; i++) {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.onclick = () => { teamCurrent = i - 1; teamNav(1); if(i===0){teamCurrent=0;teamNav(0);} };
-  d.onclick = () => { const diff = i - teamCurrent; if(diff!==0) teamNav(diff); };
-  teamDotsEl.appendChild(d);
+  
+  const track = document.getElementById('teamTrack');
+  if (track) {
+    track.style.transform = `translateX(-${teamCurrent * 100}%)`;
+  }
+  
+  // Update buttons
+  const prevBtn = document.getElementById('teamPrev');
+  const nextBtn = document.getElementById('teamNext');
+  if (prevBtn) prevBtn.disabled = teamCurrent === 0;
+  if (nextBtn) nextBtn.disabled = teamCurrent === teamTotal - 1;
+  
+  // Update dots
+  document.querySelectorAll('#teamDots .dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === teamCurrent);
+  });
 }
 
-// ── Testimonials slider ──
-let testiCurrent = 0;
+// Initialize Team Dots
+function initTeamDots() {
+  const teamDotsEl = document.getElementById('teamDots');
+  if (!teamDotsEl) return;
+  
+  teamDotsEl.innerHTML = '';
+  for (let i = 0; i < teamTotal; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => {
+      const difference = i - teamCurrent;
+      if (difference !== 0) teamNav(difference);
+    };
+    teamDotsEl.appendChild(dot);
+  }
+}
+
+// ── Testimonials Slider (Placeholder) ──
 function testiNav(dir) {
-  // placeholder — ready for when real testimonials are added
+  // Will be activated when real testimonials are added
 }
 
-// ── Contact form ──
+// ── Contact Form ──
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
-  btn.textContent = "Sent! We'll be in touch within 24 hours.";
-  btn.style.background = '#0f6e56';
-  btn.disabled = true;
+  if (btn) {
+    btn.textContent = "Sent! We'll be in touch within 24 hours.";
+    btn.style.background = '#0f6e56';
+    btn.disabled = true;
+  }
 }
+
+// Initialize everything when page loads
+window.onload = function() {
+  initTeamDots();
+};
 </script>
   <!-- Floating WhatsApp -->
 <a href="https://wa.me/2348023914866" target="_blank" class="wa-float" aria-label="Chat with us on WhatsApp" title="Chat on WhatsApp">
