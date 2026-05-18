@@ -935,52 +935,76 @@ h1 { animation-delay: 0.2s; }
 </footer>
 
 <script>
-// ── Mobile Menu ──
+// Mobile Menu
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// ── Team Slider ──
+// Team Slider with Swipe Support
 let teamCurrent = 0;
 const teamTotal = 3;
+let startX = 0;
+let isDragging = false;
+
+const teamTrack = document.getElementById('teamTrack');
 
 function teamNav(dir) {
   teamCurrent = Math.max(0, Math.min(teamTotal - 1, teamCurrent + dir));
   
-  const track = document.getElementById('teamTrack');
-  if (track) track.style.transform = `translateX(-${teamCurrent * 100}%)`;
+  if (teamTrack) {
+    teamTrack.style.transform = `translateX(-${teamCurrent * 100}%)`;
+  }
   
-  // Update navigation buttons
-  const prevBtn = document.getElementById('teamPrev');
-  const nextBtn = document.getElementById('teamNext');
-  if (prevBtn) prevBtn.disabled = (teamCurrent === 0);
-  if (nextBtn) nextBtn.disabled = (teamCurrent === teamTotal - 1);
+  document.getElementById('teamPrev').disabled = (teamCurrent === 0);
+  document.getElementById('teamNext').disabled = (teamCurrent === teamTotal - 1);
   
-  // Update active dot
   document.querySelectorAll('#teamDots .dot').forEach((dot, i) => {
     dot.classList.toggle('active', i === teamCurrent);
   });
 }
 
-// Initialize Team Dots
+// Initialize Dots
 function initTeamDots() {
   const dotsContainer = document.getElementById('teamDots');
   if (!dotsContainer) return;
   
-  dotsContainer.innerHTML = ''; // Clear existing dots
-  
+  dotsContainer.innerHTML = '';
   for (let i = 0; i < teamTotal; i++) {
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => {
-      const diff = i - teamCurrent;
-      if (diff !== 0) teamNav(diff);
-    };
+    dot.onclick = () => teamNav(i - teamCurrent);
     dotsContainer.appendChild(dot);
   }
 }
 
-// ── Contact Form Handler ──
+// Touch Swipe Support
+function initSwipe() {
+  if (!teamTrack) return;
+  
+  teamTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  teamTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+  });
+
+  teamTrack.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (diff > 50) {
+      teamNav(1);        // Swipe Left → Next
+    } else if (diff < -50) {
+      teamNav(-1);       // Swipe Right → Previous
+    }
+    isDragging = false;
+  });
+}
+
+// Contact Form
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
@@ -991,9 +1015,10 @@ function handleSubmit(e) {
   }
 }
 
-// ── Initialize everything on page load ──
+// Initialize everything
 window.onload = function() {
   initTeamDots();
+  initSwipe();
 };
 </script>
   <!-- Floating WhatsApp -->
