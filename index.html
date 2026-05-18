@@ -897,25 +897,31 @@ h1 { animation-delay: 0.2s; }
         </iframe>
       </div>
     </div>
-    <div>
-      <form class="contact-form" action="https://formspree.io/f/xvzyggwe" method="POST" onsubmit="handleSubmit(event)">
+        <div>
+      <form class="contact-form" action="https://formspree.io/f/xvzyggwe" method="POST" id="contactForm">
+        
+        <!-- Honeypot anti-spam (invisible to users) -->
+        <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+        
         <div class="form-row">
           <div class="form-group">
             <label for="fname">Full name</label>
-            <input type="text" id="fname" placeholder="Adebayo Johnson" required>
+            <input type="text" id="fname" name="full_name" placeholder="Adebayo Johnson" required>
           </div>
           <div class="form-group">
             <label for="fphone">Phone number</label>
-            <input type="tel" id="fphone" placeholder="+234 800 000 0000">
+            <input type="tel" id="fphone" name="phone" placeholder="+234 800 000 0000">
           </div>
         </div>
+        
         <div class="form-group">
           <label for="femail">Email address</label>
-          <input type="email" id="femail" placeholder="you@company.com" required>
+          <input type="email" id="femail" name="email" placeholder="you@company.com" required>
         </div>
+        
         <div class="form-group">
           <label for="fservice">Service of interest</label>
-          <select id="fservice">
+          <select id="fservice" name="service">
             <option value="">Select a service...</option>
             <option>Audit &amp; Assurance</option>
             <option>Tax Consulting</option>
@@ -926,13 +932,15 @@ h1 { animation-delay: 0.2s; }
             <option>Other / Not sure yet</option>
           </select>
         </div>
+        
         <div class="form-group">
           <label for="fmsg">Tell us about your business</label>
-          <textarea id="fmsg" placeholder="Brief description of what you need help with..."></textarea>
+          <textarea id="fmsg" name="message" placeholder="Brief description of what you need help with..." rows="4"></textarea>
         </div>
+        
         <button type="submit" class="form-submit">Send Enquiry →</button>
       </form>
-    </div>
+    </div>  
   </div>
 </section>
 
@@ -1050,16 +1058,24 @@ function initSwipe() {
   });
 }
 
-// Contact Form
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
+// Contact Form Success Handler
+function handleFormSuccess() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  
+  const btn = form.querySelector('.form-submit');
   if (btn) {
-    btn.textContent = "Sent! We'll be in touch within 24 hours.";
+    btn.textContent = "✓ Sent! We'll reply within 24 hours.";
     btn.style.background = '#0f6e56';
     btn.disabled = true;
   }
 }
+
+// Listen for successful Formspree submission
+document.getElementById('contactForm').addEventListener('submit', function() {
+  // Small delay to let Formspree process
+  setTimeout(handleFormSuccess, 800);
+});
 
 // Initialize everything
 window.onload = function() {
