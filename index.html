@@ -248,13 +248,16 @@ h2 {
   font-size: 0.88rem; 
   line-height: 1.85; 
   color: var(--muted); 
-  flex: 1; 
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;        /* Limits to 3 lines */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+.team-bio.expanded {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
 .team-creds { border-top: 1px solid var(--border); padding-top: 1.2rem; }
 .creds-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); font-weight: 500; margin-bottom: 0.8rem; }
@@ -1054,6 +1057,14 @@ window.onload = function() {
   initTeamDots();
   initSwipe();
 };
+    // Toggle Read More Bio
+function toggleBio(btn) {
+  const bio = btn.previousElementSibling;
+  if (!bio) return;
+  const isExpanded = bio.classList.contains('expanded');
+  bio.classList.toggle('expanded');
+  btn.textContent = isExpanded ? 'Read more' : 'Read less';
+}
 </script>
   <!-- Floating WhatsApp -->
 <a href="https://wa.me/2348023914866" target="_blank" class="wa-float" aria-label="Chat with us on WhatsApp" title="Chat on WhatsApp">
@@ -1088,19 +1099,6 @@ window.onload = function() {
     "Company Secretarial Services"
   ]
 }
-    // Toggle Read More Bio
-function toggleBio(btn) {
-  const bio = btn.parentElement.querySelector('.team-bio');
-  if (!bio) return;
-  
-  if (bio.style.display === 'none' || bio.style.display === '') {
-    bio.style.display = 'block';
-    btn.textContent = 'Read less';
-  } else {
-    bio.style.display = '-webkit-box';
-    btn.textContent = 'Read more';
-  }
-}
-</script>
+   </script>
 </body>
 </html>
