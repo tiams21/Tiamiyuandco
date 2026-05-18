@@ -253,11 +253,13 @@ h2 {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-height: calc(1.85em * 3);
 }
 .team-bio.expanded {
-  display: block;
-  overflow: visible;
-  -webkit-line-clamp: unset;
+  display: block !important;
+  overflow: visible !important;
+  max-height: none !important;
+  -webkit-line-clamp: unset !important;
 }
 .team-creds { border-top: 1px solid var(--border); padding-top: 1.2rem; }
 .creds-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); font-weight: 500; margin-bottom: 0.8rem; }
@@ -1059,7 +1061,9 @@ window.onload = function() {
 };
     // Toggle Read More Bio
 function toggleBio(btn) {
-  const bio = btn.previousElementSibling;
+  const content = btn.closest('.team-content');
+  if (!content) return;
+  const bio = content.querySelector('.team-bio');
   if (!bio) return;
   const isExpanded = bio.classList.contains('expanded');
   bio.classList.toggle('expanded');
