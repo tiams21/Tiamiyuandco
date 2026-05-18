@@ -1038,15 +1038,20 @@ function teamNav(dir) {
     dot.classList.toggle('active', i === teamCurrent);
   });
 }
-    // Testimonials Slider
+   // === TESTIMONIALS SLIDER WITH SWIPE ===
 let testiCurrent = 0;
 const testiTotal = 2;
+let testiStartX = 0;
+let testiIsDragging = false;
+
+const testiTrack = document.getElementById('testiTrack');
 
 function testiNav(dir) {
   testiCurrent = Math.max(0, Math.min(testiTotal - 1, testiCurrent + dir));
   
-  const track = document.getElementById('testiTrack');
-  if (track) track.style.transform = `translateX(-${testiCurrent * 100}%)`;
+  if (testiTrack) {
+    testiTrack.style.transform = `translateX(-${testiCurrent * 100}%)`;
+  }
   
   document.getElementById('testiPrev').disabled = (testiCurrent === 0);
   document.getElementById('testiNext').disabled = (testiCurrent === testiTotal - 1);
@@ -1056,9 +1061,11 @@ function testiNav(dir) {
   });
 }
 
+// Initialize Testimonials Dots
 function initTestiDots() {
   const dotsContainer = document.getElementById('testiDots');
   if (!dotsContainer) return;
+  
   dotsContainer.innerHTML = '';
   for (let i = 0; i < testiTotal; i++) {
     const dot = document.createElement('div');
@@ -1066,6 +1073,29 @@ function initTestiDots() {
     dot.onclick = () => testiNav(i - testiCurrent);
     dotsContainer.appendChild(dot);
   }
+}
+
+// Touch Swipe Support for Testimonials
+function initTestiSwipe() {
+  if (!testiTrack) return;
+  
+  testiTrack.addEventListener('touchstart', (e) => {
+    testiStartX = e.touches[0].clientX;
+    testiIsDragging = true;
+  });
+
+  testiTrack.addEventListener('touchend', (e) => {
+    if (!testiIsDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = testiStartX - endX;
+
+    if (diff > 50) {
+      testiNav(1);        // Swipe Left → Next
+    } else if (diff < -50) {
+      testiNav(-1);       // Swipe Right → Previous
+    }
+    testiIsDragging = false;
+  });
 }
 
 // Initialize Dots
@@ -1171,7 +1201,8 @@ document.getElementById('contactForm').addEventListener('submit', function() {
 window.onload = function() {
   initTeamDots();
   initSwipe();
-    initTestiDots();
+  initTestiDots();
+  initTestiSwipe();
 };
     // Toggle Read More Bio
 function toggleBio(btn) {
