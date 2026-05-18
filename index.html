@@ -948,45 +948,39 @@ function teamNav(dir) {
   teamCurrent = Math.max(0, Math.min(teamTotal - 1, teamCurrent + dir));
   
   const track = document.getElementById('teamTrack');
-  if (track) {
-    track.style.transform = `translateX(-${teamCurrent * 100}%)`;
-  }
+  if (track) track.style.transform = `translateX(-${teamCurrent * 100}%)`;
   
-  // Update buttons
+  // Update navigation buttons
   const prevBtn = document.getElementById('teamPrev');
   const nextBtn = document.getElementById('teamNext');
-  if (prevBtn) prevBtn.disabled = teamCurrent === 0;
-  if (nextBtn) nextBtn.disabled = teamCurrent === teamTotal - 1;
+  if (prevBtn) prevBtn.disabled = (teamCurrent === 0);
+  if (nextBtn) nextBtn.disabled = (teamCurrent === teamTotal - 1);
   
-  // Update dots
-  document.querySelectorAll('#teamDots .dot').forEach((dot, index) => {
-    dot.classList.toggle('active', index === teamCurrent);
+  // Update active dot
+  document.querySelectorAll('#teamDots .dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === teamCurrent);
   });
 }
 
 // Initialize Team Dots
 function initTeamDots() {
-  const teamDotsEl = document.getElementById('teamDots');
-  if (!teamDotsEl) return;
+  const dotsContainer = document.getElementById('teamDots');
+  if (!dotsContainer) return;
   
-  teamDotsEl.innerHTML = '';
+  dotsContainer.innerHTML = ''; // Clear existing dots
+  
   for (let i = 0; i < teamTotal; i++) {
     const dot = document.createElement('div');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
     dot.onclick = () => {
-      const difference = i - teamCurrent;
-      if (difference !== 0) teamNav(difference);
+      const diff = i - teamCurrent;
+      if (diff !== 0) teamNav(diff);
     };
-    teamDotsEl.appendChild(dot);
+    dotsContainer.appendChild(dot);
   }
 }
 
-// ── Testimonials Slider (Placeholder) ──
-function testiNav(dir) {
-  // Will be activated when real testimonials are added
-}
-
-// ── Contact Form ──
+// ── Contact Form Handler ──
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
@@ -997,7 +991,7 @@ function handleSubmit(e) {
   }
 }
 
-// Initialize everything when page loads
+// ── Initialize everything on page load ──
 window.onload = function() {
   initTeamDots();
 };
