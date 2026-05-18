@@ -244,7 +244,18 @@ h2 {
   text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
   margin-bottom: 1.2rem; align-self: flex-start;
 }
-.team-bio { font-size: 0.88rem; line-height: 1.85; color: var(--muted); flex: 1; margin-bottom: 1.5rem; }
+.team-bio { 
+  font-size: 0.88rem; 
+  line-height: 1.85; 
+  color: var(--muted); 
+  flex: 1; 
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;        /* Limits to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .team-creds { border-top: 1px solid var(--border); padding-top: 1.2rem; }
 .creds-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); font-weight: 500; margin-bottom: 0.8rem; }
 .creds-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
