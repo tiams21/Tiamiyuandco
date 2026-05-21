@@ -196,7 +196,61 @@ h1 em { font-style: italic; color: var(--blue); }
   width: min(340px, 88%); 
   backdrop-filter: blur(12px);
 }
+/* HERO RIGHT - Cleaner Glass Effect */
+.hero-right {
+  background-image: url('hero-boardroom.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(15,31,92,0.68), rgba(15,31,92,0.82));
+  z-index: 1;
+}
+
+.hero-card {
+  position: relative; 
+  z-index: 2;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 16px; 
+  padding: 2.4rem 2.2rem; 
+  width: min(340px, 88%); 
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.hero-card-label {
+  font-size: 0.72rem; 
+  letter-spacing: 0.2em; 
+  text-transform: uppercase; 
+  color: var(--teal); 
+  margin-bottom: 1.4rem; 
+  font-weight: 600;
+}
+
+/* Make "See Our Services" look like the screenshot */
+.btn-ghost {
+  border: 1.8px solid var(--navy); 
+  color: var(--navy); 
+  padding: 0.85rem 2rem; 
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 0.8rem;
+}
+.btn-ghost:hover {
+  background: var(--navy); 
+  color: #fff;
+}
 /* ─── TRUST BAR ─── */
 .trust-bar {
   background: var(--offwhite); padding: 1.2rem 8%;
@@ -644,7 +698,7 @@ select:focus {
     <p class="hero-tagline">"Building trust, Delivering growth..."</p>
   </div>
 
-  <!-- HERO RIGHT - Premium Look -->
+  <!-- HERO RIGHT -->
   <div class="hero-right">
     <div class="hero-card">
       <div class="hero-card-label">WHAT WE DO</div>
@@ -664,6 +718,7 @@ select:focus {
     </div>
   </div>
 </section>
+    
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item"><div class="trust-icon">✓</div>ICAN Member Firm</div>
