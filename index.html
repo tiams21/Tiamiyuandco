@@ -323,12 +323,47 @@ h2 {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden;
 }
-.service-card { background: var(--white); padding: 2rem 1.8rem; transition: background 0.2s; }
-.service-card:hover { background: var(--offwhite); }
-.service-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--teal-soft); line-height: 1; margin-bottom: 0.8rem; }
-.service-title { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.6rem; }
-.service-desc { font-size: 0.83rem; line-height: 1.75; color: var(--muted); margin-bottom: 1rem; }
-.service-link { font-size: 0.78rem; color: var(--blue); font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.service-card {
+  background: var(--white);
+  padding: 2.4rem 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  background: #f8f9fc;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(15, 31, 92, 0.08);
+  border-color: var(--border);
+}
+
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  font-weight: 500;
+  color: var(--teal-soft);
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+.service-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.9rem;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--muted);
+  flex-grow: 1;
+}
 
 /* ─── WHY US ─── */
 #why { background: var(--navy); }
@@ -811,12 +846,17 @@ select:focus {
     <div class="service-card">
       <div class="service-num">08</div>
       <div class="service-title">Business Registration &amp; CAC Matters</div>
-      <div class="service-desc">Company incorporation, name reservation, post-incorporation compliance.</div>
+      <div class="service-desc">Company incorporation, name reservation, and post-incorporation compliance.</div>
     </div>
     <div class="service-card">
       <div class="service-num">09</div>
       <div class="service-title">Financial Due Diligence</div>
       <div class="service-desc">Pre-investment reviews, business valuation, and financial investigations.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">10</div>
+      <div class="service-title">Forensic Accounting</div>
+      <div class="service-desc">Fraud detection, financial investigations, and dispute resolution support.</div>
     </div>
   </div>
 
