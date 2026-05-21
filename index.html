@@ -181,7 +181,30 @@ h1 em { font-style: italic; color: var(--blue); }
 .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: #fff; line-height: 1; }
 .hero-stat-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
 .hero-card-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 1.2rem 0; }
-.hero-services-list { list-style: none; }
+.hero-services-list {
+  margin-top: 1rem;
+}
+
+.hero-services-list li {
+  font-size: 0.9rem;           /* Bigger text */
+  color: rgba(255,255,255,0.85); 
+  padding: 0.65rem 0;          /* More vertical space */
+  border-bottom: 1px solid rgba(255,255,255,0.1); 
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  line-height: 1.4;
+}
+
+.hero-services-list li::before { 
+  content: ''; 
+  display: block; 
+  width: 7px;                  /* Bigger dot */
+  height: 7px; 
+  border-radius: 50%; 
+  background: var(--teal); 
+  flex-shrink: 0;
+}
 .hero-card {
   position: relative; 
   z-index: 2;
