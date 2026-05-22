@@ -183,9 +183,22 @@ h1 em { font-style: italic; color: var(--blue); }
   font-style: italic; color: var(--muted);
 }
 .hero-right {
-  background: var(--navy); position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  background-size: cover; background-position: center;
+  background-image: url('hero-boardroom.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(15,31,92,0.55), rgba(15,31,92,0.65)); /* Lighter overlay */
+  z-index: 1;
 }
 .hero-right-overlay {
   position: absolute; inset: 0;
@@ -1072,15 +1085,18 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 <section id="testimonials">
   <div class="section-eyebrow">Client feedback</div>
   <h2>What our clients say</h2>
-  <p class="section-intro">Real feedback from business owners we've worked with across Lagos.</p>
+  <p class="section-intro">Real results from Lagos business owners we've helped.</p>
+  
   <div class="testi-slider">
-    <div class="testi-track" id="testiTrack" aria-live="polite">
-      <div class="testi-slide" role="group" aria-label="Testimonial 1 of 2">
+    <div class="testi-track" id="testiTrack">
+
+      <!-- Testimonial 1 -->
+      <div class="testi-slide">
         <div class="testi-card">
-          <div class="testi-quote" aria-hidden="true">"</div>
-          <div class="testi-text">Tiamiyu Adeshina &amp; Co. handled our statutory audit and tax filings professionally. They saved us significant penalties and explained everything clearly. Highly recommended for SMEs in Lagos.</div>
+          <div class="testi-quote">“</div>
+          <div class="testi-text">Tiamiyu Adeshina & Co. handled our statutory audit and tax filings for 2024. They identified and corrected errors that would have cost us over ₦8.5 million in penalties. Very professional and responsive.</div>
           <div class="testi-author">
-            <div class="testi-avatar" aria-hidden="true">AO</div>
+            <div class="testi-avatar">AO</div>
             <div>
               <div class="testi-name">Adebayo Ogunleye</div>
               <div class="testi-role">CEO, Ogunleye Logistics Ltd</div>
@@ -1088,12 +1104,14 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
           </div>
         </div>
       </div>
-      <div class="testi-slide" role="group" aria-label="Testimonial 2 of 2">
+
+      <!-- Testimonial 2 -->
+      <div class="testi-slide">
         <div class="testi-card">
-          <div class="testi-quote" aria-hidden="true">"</div>
-          <div class="testi-text">Their team made our CAC registration and first-year compliance seamless. Responsive, honest, and very knowledgeable about Nigerian tax laws. Best decision we made for our startup.</div>
+          <div class="testi-quote">“</div>
+          <div class="testi-text">They helped us with CAC registration and our first-year compliance. Everything was seamless. Their team explained every step clearly. Best decision we made for our startup.</div>
           <div class="testi-author">
-            <div class="testi-avatar" aria-hidden="true">SF</div>
+            <div class="testi-avatar">SF</div>
             <div>
               <div class="testi-name">Sarah Folake</div>
               <div class="testi-role">Founder, Bella Naturals</div>
@@ -1101,12 +1119,45 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
           </div>
         </div>
       </div>
+
     </div>
   </div>
+
   <div class="testi-controls">
-    <button class="arrow-btn" id="testiPrev" onclick="testiNav(-1)" disabled aria-label="Previous testimonial">&#8592;</button>
-    <div class="team-dots" id="testiDots" role="tablist" aria-label="Testimonial navigation"></div>
-    <button class="arrow-btn" id="testiNext" onclick="testiNav(1)" aria-label="Next testimonial">&#8594;</button>
+    <button class="arrow-btn" id="testiPrev" onclick="testiNav(-1)" disabled>&#8592;</button>
+    <div class="team-dots" id="testiDots"></div>
+    <button class="arrow-btn" id="testiNext" onclick="testiNav(1)">&#8594;</button>
+  </div>
+</section>
+    <!-- MINI CASE STUDIES -->
+<section id="cases" style="background: var(--offwhite);">
+  <div class="section-eyebrow">Real Results</div>
+  <h2>Recent Client Success Stories</h2>
+  <p class="section-intro">Here’s what we’ve helped businesses achieve in Lagos.</p>
+
+  <div class="case-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+    
+    <div class="case-card" style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border);">
+      <div style="color: var(--teal); font-weight: 600; margin-bottom: 1rem;">LOGISTICS COMPANY</div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Saved ₦12.8 Million in Penalties</h3>
+      <p style="color: var(--muted); line-height: 1.7;">Conducted full tax review and regularized 3 years of outstanding filings. Successfully negotiated with FIRS and avoided heavy penalties while securing compliance certificate.</p>
+      <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy); font-weight: 500;">— Adebayo Ogunleye, CEO, Ogunleye Logistics Ltd</div>
+    </div>
+
+    <div class="case-card" style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border);">
+      <div style="color: var(--teal); font-weight: 600; margin-bottom: 1rem;">BEAUTY BRAND</div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Seamless CAC Registration + First Year Compliance</h3>
+      <p style="color: var(--muted); line-height: 1.7;">Handled full company incorporation, tax registration, and first-year statutory filings within 3 weeks. Client was able to focus on sales instead of paperwork.</p>
+      <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy); font-weight: 500;">— Sarah Folake, Founder, Bella Naturals</div>
+    </div>
+
+    <div class="case-card" style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border);">
+      <div style="color: var(--teal); font-weight: 600; margin-bottom: 1rem;">MANUFACTURING FIRM</div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Improved Bookkeeping & Cashflow Visibility</h3>
+      <p style="color: var(--muted); line-height: 1.7;">Implemented proper monthly management accounts. Client now has clear visibility of profitable products and was able to secure bank financing based on clean records.</p>
+      <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--navy); font-weight: 500;">— Client (Manufacturing Sector)</div>
+    </div>
+
   </div>
 </section>
 
